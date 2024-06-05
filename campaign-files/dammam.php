@@ -131,7 +131,7 @@ $section_04_icon    = $campaboutrow['section_04_icon'];
                     <div class="cs-header-form">
                         <input type="hidden" class="form-control" name="campaignid" id="campaignid" value="<?php echo $cid ?>">
                         <input type="hidden" class="form-control" name="campaignlang" id="campaignlang" value="<?php echo $lang ?>">
-                        <h2><?php echo getLangText( 'book our services now' ) ?></h2>
+                        <h2 class="text-center"><?php echo getLangText( 'book our services now' ) ?></h2>
                         <br>
                         <div class="form-group cs-form-group">
                             <input type="text" class="form-control" name="campaignname" id="campaignname" placeholder="<?php echo getLangText( 'enter your name' ) ?>" required="">
