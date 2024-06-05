@@ -1,0 +1,53 @@
+	/*
+  	Flaticon icon font: Flaticon
+  	Creation date: 23/09/2019 12:32
+  	*/
+
+@font-face {
+  font-family: "Flaticon";
+  src: url("./Flaticon.eot");
+  src: url("./Flaticon.eot?#iefix") format("embedded-opentype"),
+       url("./Flaticon.woff2") format("woff2"),
+       url("./Flaticon.woff") format("woff"),
+       url("./Flaticon.ttf") format("truetype"),
+       url("./Flaticon.svg#Flaticon") format("svg");
+  font-weight: normal;
+  font-style: normal;
+}
+
+@media screen and (-webkit-min-device-pixel-ratio:0) {
+  @font-face {
+    font-family: "Flaticon";
+    src: url("./Flaticon.svg#Flaticon") format("svg");
+  }
+}
+
+[class^="flaticon-"]:before, [class*=" flaticon-"]:before,
+[class^="flaticon-"]:after, [class*=" flaticon-"]:after {   
+  font-family: Flaticon;
+        font-size: 20px;
+font-style: normal;
+margin-left: 20px;
+}
+
+.flaticon-car-service:before { content: "\f100"; }
+.flaticon-car-service-1:before { content: "\f101"; }
+.flaticon-maintenance:before { content: "\f102"; }
+.flaticon-car-service-2:before { content: "\f103"; }
+.flaticon-brake:before { content: "\f104"; }
+.flaticon-headlights:before { content: "\f105"; }
+.flaticon-tyre:before { content: "\f106"; }
+.flaticon-battery:before { content: "\f107"; }
+.flaticon-car-service-3:before { content: "\f108"; }
+.flaticon-suspension:before { content: "\f109"; }
+.flaticon-wheel-alignment:before { content: "\f10a"; }
+.flaticon-windshield:before { content: "\f10b"; }
+.flaticon-windshield-1:before { content: "\f10c"; }
+.flaticon-tinting:before { content: "\f10d"; }
+.flaticon-car-wash:before { content: "\f10e"; }
+.flaticon-air-conditioning:before { content: "\f10f"; }
+.flaticon-mechanic:before { content: "\f110"; }
+.flaticon-car:before { content: "\f111"; }
+.flaticon-award:before { content: "\f112"; }
+.flaticon-wallet:before { content: "\f113"; }
+.flaticon-whatsapp-logo:before { content: "\f114"; }

@@ -1,0 +1,5 @@
+/**
+ * Create Time Picker (for PHPMaker 2018)
+ * @license (C) 2017 e.World Technology Ltd.
+ */
+function ew_CreateTimePicker(t,e,i){if(e.indexOf("$rowindex$")>-1)return;var n=jQuery,r=ew_GetElement(e,t),p=n(r);if(p.hasClass("ui-timepicker-input"))return;if(i.timeFormat&&EW_TIME_SEPARATOR!=":")i.timeFormat=i.timeFormat.replace(/:/g,EW_TIME_SEPARATOR);var a=n.isBoolean(i.inputGroup)?i.inputGroup:true;delete i.inputGroup;p.timepicker(i).on("showTimepicker",function(){p.data("timepicker-list").width(p.outerWidth()-2)});if(a){var o=n('<button type="button"><span class="glyphicon glyphicon-time"></span></button>').addClass("btn btn-default btn-sm").css({"font-size":p.css("font-size"),height:p.outerHeight()}).click(function(){p.timepicker("show")});p.wrap('<div class="input-group"></div>').after(n('<span class="input-group-btn"></span>').append(o))}}

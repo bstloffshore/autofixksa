@@ -1,0 +1,26 @@
+﻿<?xml version="1.0" encoding="UTF-8"?>
+<configuration date="2019/10/25" author="e.World Technology Ltd.">
+  <project id="{8281128E-C7BB-40DA-A1AE-8695DB7283AC}" file="C:\Users\Thiru\Dropbox\PMPs\Autofix.pmp" name="Autofix" product="PHPMaker" version="14.0" datetime="2019/10/25 13:54:05" languagefolder="phplang" userlevel="-2,&quot;Anonymous&quot;,0;">
+    <table id="about_us" name="about_us" caption="About Us" userlevel="-2,&quot;Anonymous&quot;,0;" priv="1" />
+    <table id="cms_users" name="cms_users" caption="CMS Users" userlevel="-2,&quot;Anonymous&quot;,0;" priv="1" />
+    <table id="inb_contactus" name="inb_contactus" caption="Contact Us" userlevel="-2,&quot;Anonymous&quot;,0;" priv="1" />
+    <table id="notification_options" name="notification_options" caption="Notification Options" userlevel="-2,&quot;Anonymous&quot;,0;" priv="1" />
+    <table id="notification_recipients" name="notification_recipients" caption="Notification Recipients" userlevel="-2,&quot;Anonymous&quot;,0;" priv="1" />
+    <table id="others" name="others" caption="Contact Info" userlevel="-2,&quot;Anonymous&quot;,0;" priv="1" />
+    <table id="pages_static" name="pages_static" caption="Pages Static" userlevel="-2,&quot;Anonymous&quot;,0;" priv="1" />
+    <table id="services" name="services" caption="Services" userlevel="-2,&quot;Anonymous&quot;,0;" priv="1" />
+    <table id="smtp_details" name="smtp_details" caption="SMTP Details" userlevel="-2,&quot;Anonymous&quot;,0;" priv="1" />
+    <table id="web_branches" name="web_branches" caption="Map" userlevel="-2,&quot;Anonymous&quot;,0;" priv="1" />
+    <table id="clients" name="clients" caption="Our Partners" userlevel="-2,&quot;Anonymous&quot;,0;" priv="1" />
+    <table id="home_about_us" name="home_about_us" caption="About Us" userlevel="-2,&quot;Anonymous&quot;,0;" priv="1" />
+    <table id="inb_estimate" name="inb_estimate" caption="Estimate" userlevel="-2,&quot;Anonymous&quot;,0;" priv="1" />
+    <table id="our_process" name="our_process" caption="Our Process" userlevel="-2,&quot;Anonymous&quot;,0;" priv="1" />
+    <table id="our_values" name="our_values" caption="Our Values" userlevel="-2,&quot;Anonymous&quot;,0;" priv="1" />
+    <table id="sliders" name="sliders" caption="Sliders" userlevel="-2,&quot;Anonymous&quot;,0;" priv="1" />
+    <table id="socials" name="socials" caption="Socials" userlevel="-2,&quot;Anonymous&quot;,0;" priv="1" />
+    <table id="translations" name="translations" caption="Translations" userlevel="-2,&quot;Anonymous&quot;,0;" priv="1" />
+    <table id="campaign_aboutus" name="campaign_aboutus" caption="About Us" userlevel="-2,&quot;Anonymous&quot;,0;" priv="1" />
+    <table id="campaign_master" name="campaign_master" caption="Campaign Manager" userlevel="-2,&quot;Anonymous&quot;,0;" priv="1" />
+    <table id="campaign_report" name="campaign_report" caption="Campaign Reports" userlevel="-2,&quot;Anonymous&quot;,0;" priv="1" />
+  </project>
+</configuration>

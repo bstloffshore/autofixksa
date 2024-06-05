@@ -1,0 +1,187 @@
+[class^="flaticon-"]:before, [class*=" flaticon-"]:before {
+    font-family: Flaticon;
+    font-size: 70px;
+    font-style: normal;
+    margin-left: 0px;
+    color: #d82028;
+}
+
+.cs-contact-action h4 {
+    color: #0591ca;
+    margin: 0;
+    font-size: 25px;
+    font-weight: 500;
+}
+
+
+.navbar-default.cs-primary-navbar {
+    background-color: #d82028;
+}
+
+.navbar-nav .cs-fa {
+    border-radius: 50%;
+    background-color: #ffffff;
+    width: 42px;
+    line-height: 42px;
+    text-align: center;
+    height: 42px;
+    vertical-align: middle;
+    color: #000000;
+    font-size: 15px;
+    transition: all .3s ease;
+    font-size: 15px;
+    border: 2px solid transparent;
+}
+
+.cs-about-content h2 {
+    color: #1a1e32;
+    font-size: 36px;
+    font-weight: 500;
+}
+
+@media (min-width: 768px) {
+header {
+    padding: 120px 0;
+}
+
+	.cs-abt-section {
+    padding-bottom: 60px;
+}
+
+	section {
+    padding-top: 60px;
+    padding-bottom: 60px;
+}
+
+	.section-sm {
+    padding-top: 60px;
+    padding-bottom: 60px;
+}
+
+}
+
+@media (max-width: 768px) {
+.header-content h1 {
+    text-align: center;
+    font-size: 38px;
+    line-height: 40px;
+	} }
+
+.cs-call-action {
+    background: url(../images/bg3.png);
+    background-position: center;
+    background-size: cover;
+    padding: 80px 0;
+}
+
+
+@media (min-width: 1200px) {
+header .container {
+    width: 96%;
+	}
+}
+
+
+.bgimg {
+    position: relative;
+    width: 100%;
+    min-height: auto;
+    overflow-y: hidden;
+    /*background: url(../images/WEBSITE-BANNER-EN-01.jpg);*/
+    background-position: left;
+    color: white;
+    background-size: cover;
+/*    padding: 90px 0;*/
+}
+
+.camp-map-pad
+{
+    padding-top: 0px;
+    padding-bottom: 0px;
+}
+
+.cs-form-group {
+    margin-bottom: 30px;
+}
+
+
+@media (max-width: 768px) {
+.cs-section-heading h2, .cs-header-form h2, .cs-about-content h2 {
+    font-size: 23px !important;
+}
+}
+
+
+@media (max-width: 768px) and (orientation : portrait)
+
+{
+
+	.bgimg {
+    position: relative;
+    width: 100%;
+    min-height: auto;
+    overflow-y: hidden;
+    /* background: url(../images/WEBSITE-BANNER-EN-01.jpg); */
+    background-position: left top;
+    color: white;
+    background-size: contain;
+    /* padding: 90px 0; */
+    background-repeat: no-repeat;
+}
+
+	.cs-header-form {
+    background-color: rgba(0, 0, 0, 0.9);
+    max-width: 458px;
+    display: block;
+    margin: auto;
+    padding: 20px;
+    margin-top: 190px;
+}
+
+	header {
+    padding: 0px 0px;
+}
+
+	section {
+    padding-top: 0px;
+    padding-bottom: 60px;
+}
+
+}
+
+
+
+@media (max-width: 992px) and (orientation : landscape) {
+
+	.bgimg {
+    position: relative;
+    width: 100%;
+    min-height: auto;
+    overflow-y: hidden;
+    /* background: url(../images/WEBSITE-BANNER-EN-01.jpg); */
+    background-position: left top;
+    color: white;
+    background-size: contain;
+    /* padding: 90px 0; */
+    background-repeat: no-repeat;
+}
+
+.cs-header-form {
+    background-color: rgba(0, 0, 0, 0.9);
+    max-width: 100%;
+    display: block;
+    margin: auto;
+    padding: 20px;
+    margin-top: 380px;
+}
+
+		header {
+    padding: 0px 0px;
+}
+
+	section {
+    padding-top: 0px;
+    padding-bottom: 60px;
+}
+
+}

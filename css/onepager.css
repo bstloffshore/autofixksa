@@ -1,0 +1,43 @@
+.breadcrumb-area {
+    position: relative;
+    display: block;
+    background-attachment: scroll;
+    background-size: cover;
+    background-position: center top;
+    background-repeat: no-repeat;
+    padding: 162px 0 149px;
+    z-index: 1;
+/*    top: -100px;*/
+}
+
+.main-header {
+    position: relative;
+    display: block;
+    width: 100%;
+    background: none;
+    z-index: 9999;
+    transition: all 300ms ease;
+}
+
+.btn-two:hover {
+    color: #221f1f !important;
+    background: #ffde16;
+}
+
+
+
+.main-header .header-right .button a {
+    margin-left: 20px;
+}
+
+.secpd1 {
+    padding: 120px 0 120px 0;
+}
+
+.contact-form form textarea {
+    height: 160px;
+    padding-left: 45px;
+    padding-right: 20px;
+    padding-top: 17px;
+    padding-bottom: 15px;
+}

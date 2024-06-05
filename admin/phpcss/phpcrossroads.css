@@ -1,0 +1,78 @@
+@import url('https://fonts.googleapis.com/css?family=Lato:300,300i,400,400i,700,700i,900,900i');
+
+body {
+  font-family: 'Lato', sans-serif;
+  font-size: 14px;
+  line-height: 1.42857; }
+
+ .main-header .logo {
+ 	font-family: 'Lato', sans-serif;
+    -webkit-transition: width 0.3s ease-in-out;
+    -o-transition: width 0.3s ease-in-out;
+    transition: width 0.3s ease-in-out;
+    display: block;
+    float: left;
+    height: 50px;
+    font-size: 28px;
+    line-height: 45px;
+    text-align: center;
+    width: 230px;
+    padding: 0 15px;
+    font-weight: 900;
+    overflow: hidden;
+    background-color: #151d20 !important;
+}
+
+
+.content-header>h1 {
+    margin: 0;
+    font-weight: 700;
+    font-size: 22px;
+}
+
+
+.ewGrid .ewTable>thead>tr>th, .ewGrid .ewTable>thead>tr>td {
+    font-weight: 700 ;
+    background-color: #40546A;
+    color: #fff;
+    border-bottom: 1px solid;
+    border-right: 1px solid;
+    border-color: #9F9F9F;
+    background-repeat: repeat-x;
+    vertical-align: top;
+    padding: 3px;
+}
+
+
+.main-header .navbar {
+    -webkit-transition: margin-left 0.3s ease-in-out;
+    -o-transition: margin-left 0.3s ease-in-out;
+    transition: margin-left 0.3s ease-in-out;
+    margin-bottom: 0;
+    /*margin-left: 230px;*/
+    border: none;
+    min-height: 50px;
+    border-radius: 0;
+    background-color: #151d20 !important;
+}
+
+@media (max-width: 767px)
+.logo {
+    display: block !important;
+}
+
+.btn-primary {
+    background-color: #0060aa;
+    border-color: #0060aa;
+}
+
+.main-footer {
+    background: #fff;
+    padding: 15px;
+    color: #444;
+    border-top: 1px solid #D2D6DE;
+    font-size: 13px;
+}
+
+
+

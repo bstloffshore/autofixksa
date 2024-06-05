@@ -1,0 +1,13 @@
+Options +FollowSymLinks
+RewriteEngine On
+RewriteBase /
+
+
+RewriteCond %{REQUEST_FILENAME} !-f
+RewriteCond %{REQUEST_FILENAME} !-d
+
+#Start your rules below##
+DirectoryIndex home.php
+
+
+RewriteRule ^home/?$ home.php [NC,L]

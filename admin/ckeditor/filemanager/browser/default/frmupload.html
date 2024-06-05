@@ -1,0 +1,146 @@
+<!DOCTYPE html>
+<!--
+ * FCKeditor - The text editor for Internet - http://www.fckeditor.net
+ * Copyright (C) 2003-2010 Frederico Caldeira Knabben
+ *
+ * == BEGIN LICENSE ==
+ *
+ * Licensed under the terms of any of the following licenses at your
+ * choice:
+ *
+ *  - GNU General Public License Version 2 or later (the "GPL")
+ *    http://www.gnu.org/licenses/gpl.html
+ *
+ *  - GNU Lesser General Public License Version 2.1 or later (the "LGPL")
+ *    http://www.gnu.org/licenses/lgpl.html
+ *
+ *  - Mozilla Public License Version 1.1 or later (the "MPL")
+ *    http://www.mozilla.org/MPL/MPL-1.1.html
+ *
+ * == END LICENSE ==
+ *
+ * Page used to upload new files in the current folder.
+-->
+<html>
+	<head>
+		<title>File Upload</title>
+		<meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+		<link rel="stylesheet" type="text/css" href="../../../../bootstrap3/css/bootstrap.css">
+		<link href="browser.css" type="text/css" rel="stylesheet" >
+		<script type="text/javascript" src="../../../../jquery/jquery-3.2.1.min.js"></script><!-- *** -->
+		<script type="text/javascript" src="../../../../jquery/jquery.ui.widget.js"></script><!-- *** -->
+		<script type="text/javascript" src="../../../../jquery/load-image.all.min.js"></script><!-- *** -->
+		<script type="text/javascript" src="../../../../jquery/jqueryfileupload.min.js"></script><!-- *** -->
+		<script type="text/javascript" src="js/common.js"></script>
+		<script type="text/javascript">
+var EW_UPLOAD_TYPE = "POST" ; // Upload type //***
+var EW_UPLOAD_ALLOWED_FILE_EXT = "gif,jpg,jpeg,bmp,png,doc,docx,xls,xlsx,pdf,zip" ; // Allowed file extensions //***
+var EW_MAX_FILE_SIZE = 150000000 ; // Max file size //***
+
+function SetCurrentFolder( resourceType, folderPath )
+{
+	var sUrl = oConnector.ConnectorUrl + 'Command=FileUpload' ;
+	sUrl += '&Type=' + resourceType ;
+	sUrl += '&CurrentFolder=' + encodeURIComponent( folderPath ) ;
+	document.getElementById('frmUpload').action = sUrl ;
+}
+
+//*** function OnSubmit()
+// {
+// 	if ( document.getElementById('NewFile').value.length == 0 )
+// 	{
+// 		alert( 'Please select a file from your computer' ) ;
+// 		return false ;
+// 	}
+// 	// Set the interface elements.
+// 	document.getElementById('eUploadMessage').innerHTML = 'Upload a new file in this folder (Upload in progress, please wait...)' ;
+// 	document.getElementById('btnUpload').disabled = true ;
+// 	return true ;
+// }
+function OnUploadCompleted( errorNumber, data )
+{
+
+	// Reset the Upload Worker Frame.
+	window.parent.frames['frmUploadWorker'].location = 'javascript:void(0)' ;
+
+	// Reset the upload form (On IE we must do a little trick to avoid problems).
+	//*** if ( document.all )
+	// 	document.getElementById('NewFile').outerHTML = '<input id="NewFile" name="NewFile" style="WIDTH: 100%" type="file">' ;
+	// else
+
+		document.getElementById('frmUpload').reset() ;
+
+	// Reset the interface elements.
+	//***document.getElementById('eUploadMessage').innerHTML = 'Upload a new file in this folder' ;
+	//***document.getElementById('btnUpload').disabled = false ;
+
+	switch ( errorNumber )
+	{
+		case 0 :
+			window.parent.frames['frmResourcesList'].Refresh() ;
+			break ;
+		case 1 :	// Custom error.
+			alert( data ) ;
+			break ;
+		case 201 :
+			window.parent.frames['frmResourcesList'].Refresh() ;
+			alert( 'A file with the same name is already available. The uploaded file has been renamed to "' + data + '"' ) ;
+			break ;
+		case 202 :
+			alert( 'Invalid file' ) ;
+			break ;
+		default :
+			alert( 'Error on file upload. Error number: ' + errorNumber ) ;
+			break ;
+	}
+}
+
+function OnDone(e, data) //***
+{
+
+	// document.domain automatic fix script (#1919).
+	// The original script can be found at _dev/domain_fix_template.js
+
+	(function() {
+		var d = document.domain;
+		while (true) {
+			try {
+				var A = window.parent.document.domain;
+				break;
+			} catch (e) {};
+			d = d.replace(/.*?(?:\.|$)/, '');
+			if (d.length == 0) break;
+			try {
+				document.domain = d;
+			} catch (e) {
+				break;
+			}
+		}
+	})();
+	var result = data.result;
+	window.parent.OnUploadCompleted(result.errorNumber, result.fileUrl, result.fileName, result.customMsg);
+}
+$(function() //***
+{
+	window.top.IsLoadedUpload = true ;
+	$("#NewFile").fileupload({
+		type: EW_UPLOAD_TYPE,
+		multipart: (EW_UPLOAD_TYPE == "POST"),
+		autoUpload: true, // Comment out to disable auto upload
+		loadImageFileTypes: /^image\/(gif|jpe?g|png)$/i,
+		acceptFileTypes: (EW_UPLOAD_ALLOWED_FILE_EXT) ? new RegExp('\\.(' + EW_UPLOAD_ALLOWED_FILE_EXT.replace(/,/g, '|') + ')$', 'i') : null,
+		maxFileSize: EW_MAX_FILE_SIZE
+	}).on("fileuploaddone", OnDone);
+});
+		</script>
+	<meta name="generator" content="PHPMaker v2018.0.8">
+</head>
+	<body>
+		<form id="frmUpload" action="">
+			<div class="form-group">
+				<label for="NewFile">Upload a new file in this folder</label>
+				<input id="NewFile" name="NewFile" style="width: 100%" type="file">
+			</div>
+		</form>
+	</body>
+</html>
