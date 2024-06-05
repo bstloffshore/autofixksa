@@ -1217,6 +1217,9 @@
       <field id="title_ar">
         <phrase id="fldcaption" value="Arabic Title" />
       </field>
+      <field id="campaignslug">
+        <phrase id="fldcaption" value="Campaign Slug" />
+      </field>
       <field id="sliderimage">
         <phrase id="fldcaption" value="Slider Image" />
       </field>

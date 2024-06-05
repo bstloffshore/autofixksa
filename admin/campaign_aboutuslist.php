@@ -449,6 +449,7 @@ class ccampaign_aboutus_list extends ccampaign_aboutus {
 			$this->id->Visible = FALSE;
 		$this->title->SetVisibility();
 		$this->title_ar->SetVisibility();
+		$this->campaignSlug->SetVisibility();
 		$this->sliderImage->SetVisibility();
 		$this->sliderImage_ar->SetVisibility();
 
@@ -786,6 +787,7 @@ class ccampaign_aboutus_list extends ccampaign_aboutus {
 		$sFilterList = ew_Concat($sFilterList, $this->id->AdvancedSearch->ToJson(), ","); // Field id
 		$sFilterList = ew_Concat($sFilterList, $this->title->AdvancedSearch->ToJson(), ","); // Field title
 		$sFilterList = ew_Concat($sFilterList, $this->title_ar->AdvancedSearch->ToJson(), ","); // Field title_ar
+		$sFilterList = ew_Concat($sFilterList, $this->campaignSlug->AdvancedSearch->ToJson(), ","); // Field campaignSlug
 		$sFilterList = ew_Concat($sFilterList, $this->sliderImage->AdvancedSearch->ToJson(), ","); // Field sliderImage
 		$sFilterList = ew_Concat($sFilterList, $this->sliderImage_ar->AdvancedSearch->ToJson(), ","); // Field sliderImage_ar
 		$sFilterList = ew_Concat($sFilterList, $this->description->AdvancedSearch->ToJson(), ","); // Field description
@@ -877,6 +879,13 @@ class ccampaign_aboutus_list extends ccampaign_aboutus {
 		$this->title_ar->AdvancedSearch->SearchValue2 = @$filter["y_title_ar"];
 		$this->title_ar->AdvancedSearch->SearchOperator2 = @$filter["w_title_ar"];
 		$this->title_ar->AdvancedSearch->Save();
+		// Field campaignSlug
+		$this->campaignSlug->AdvancedSearch->SearchValue = @$filter["x_campaignSlug"];
+		$this->campaignSlug->AdvancedSearch->SearchOperator = @$filter["z_campaignSlug"];
+		$this->campaignSlug->AdvancedSearch->SearchCondition = @$filter["v_campaignSlug"];
+		$this->campaignSlug->AdvancedSearch->SearchValue2 = @$filter["y_campaignSlug"];
+		$this->campaignSlug->AdvancedSearch->SearchOperator2 = @$filter["w_campaignSlug"];
+		$this->campaignSlug->AdvancedSearch->Save();
 
 		// Field sliderImage
 		$this->sliderImage->AdvancedSearch->SearchValue = @$filter["x_sliderImage"];
@@ -1078,6 +1087,7 @@ class ccampaign_aboutus_list extends ccampaign_aboutus {
 		$sWhere = "";
 		$this->BuildBasicSearchSQL($sWhere, $this->title, $arKeywords, $type);
 		$this->BuildBasicSearchSQL($sWhere, $this->title_ar, $arKeywords, $type);
+		$this->BuildBasicSearchSQL($sWhere, $this->campaignSlug, $arKeywords, $type);
 		$this->BuildBasicSearchSQL($sWhere, $this->sliderImage, $arKeywords, $type);
 		$this->BuildBasicSearchSQL($sWhere, $this->sliderImage_ar, $arKeywords, $type);
 		$this->BuildBasicSearchSQL($sWhere, $this->description, $arKeywords, $type);
@@ -1251,6 +1261,7 @@ class ccampaign_aboutus_list extends ccampaign_aboutus {
 			$this->UpdateSort($this->id); // id
 			$this->UpdateSort($this->title); // title
 			$this->UpdateSort($this->title_ar); // title_ar
+			$this->UpdateSort($this->campaignSlug); // campaignSlug
 			$this->UpdateSort($this->sliderImage); // sliderImage
 			$this->UpdateSort($this->sliderImage_ar); // sliderImage_ar
 			$this->setStartRecordNumber(1); // Reset start position
@@ -1288,6 +1299,7 @@ class ccampaign_aboutus_list extends ccampaign_aboutus {
 				$this->id->setSort("");
 				$this->title->setSort("");
 				$this->title_ar->setSort("");
+				$this->campaignSlug->setSort("");
 				$this->sliderImage->setSort("");
 				$this->sliderImage_ar->setSort("");
 			}
@@ -1734,6 +1746,7 @@ class ccampaign_aboutus_list extends ccampaign_aboutus {
 		$this->id->setDbValue($row['id']);
 		$this->title->setDbValue($row['title']);
 		$this->title_ar->setDbValue($row['title_ar']);
+		$this->campaignSlug->setDbValue($row['campaignSlug']);
 		$this->sliderImage->Upload->DbValue = $row['sliderImage'];
 		$this->sliderImage->setDbValue($this->sliderImage->Upload->DbValue);
 		$this->sliderImage_ar->Upload->DbValue = $row['sliderImage_ar'];
@@ -1768,6 +1781,7 @@ class ccampaign_aboutus_list extends ccampaign_aboutus {
 		$row['id'] = NULL;
 		$row['title'] = NULL;
 		$row['title_ar'] = NULL;
+		$row['campaignSlug'] = NULL;
 		$row['sliderImage'] = NULL;
 		$row['sliderImage_ar'] = NULL;
 		$row['description'] = NULL;
@@ -1803,6 +1817,7 @@ class ccampaign_aboutus_list extends ccampaign_aboutus {
 		$this->id->DbValue = $row['id'];
 		$this->title->DbValue = $row['title'];
 		$this->title_ar->DbValue = $row['title_ar'];
+		$this->campaignSlug->DbValue = $row['campaignSlug'];
 		$this->sliderImage->Upload->DbValue = $row['sliderImage'];
 		$this->sliderImage_ar->Upload->DbValue = $row['sliderImage_ar'];
 		$this->description->DbValue = $row['description'];
@@ -1908,6 +1923,10 @@ class ccampaign_aboutus_list extends ccampaign_aboutus {
 		// title_ar
 		$this->title_ar->ViewValue = $this->title_ar->CurrentValue;
 		$this->title_ar->ViewCustomAttributes = "";
+
+		// campaignSlug
+		$this->campaignSlug->ViewValue = $this->campaignSlug->CurrentValue;
+		$this->campaignSlug->ViewCustomAttributes = "";
 
 		// sliderImage
 		$this->sliderImage->UploadPath = 'uploads/campaign';
@@ -2027,6 +2046,11 @@ class ccampaign_aboutus_list extends ccampaign_aboutus {
 			$this->title_ar->LinkCustomAttributes = "";
 			$this->title_ar->HrefValue = "";
 			$this->title_ar->TooltipValue = "";
+
+			// campaignSlug
+			$this->campaignSlug->LinkCustomAttributes = "";
+			$this->campaignSlug->HrefValue = "";
+			$this->campaignSlug->TooltipValue = "";
 
 			// sliderImage
 			$this->sliderImage->LinkCustomAttributes = "";
@@ -2746,6 +2770,15 @@ $campaign_aboutus_list->ListOptions->Render("header", "left");
 		</div></div></th>
 	<?php } ?>
 <?php } ?>
+<?php if ($campaign_aboutus->campaignSlug->Visible) { // campaignSlug ?>
+	<?php if ($campaign_aboutus->SortUrl($campaign_aboutus->campaignSlug) == "") { ?>
+		<th data-name="campaignSlug" class="<?php echo $campaign_aboutus->campaignSlug->HeaderCellClass() ?>"><div id="elh_campaign_aboutus_campaignSlug" class="campaign_aboutus_campaignSlug"><div class="ewTableHeaderCaption"><?php echo $campaign_aboutus->campaignSlug->FldCaption() ?></div></div></th>
+	<?php } else { ?>
+		<th data-name="campaignSlug" class="<?php echo $campaign_aboutus->campaignSlug->HeaderCellClass() ?>"><div class="ewPointer" onclick="ew_Sort(event,'<?php echo $campaign_aboutus->SortUrl($campaign_aboutus->campaignSlug) ?>',1);"><div id="elh_campaign_aboutus_campaignSlug" class="campaign_aboutus_campaignSlug">
+			<div class="ewTableHeaderBtn"><span class="ewTableHeaderCaption"><?php echo $campaign_aboutus->campaignSlug->FldCaption() ?><?php echo $Language->Phrase("SrchLegend") ?></span><span class="ewTableHeaderSort"><?php if ($campaign_aboutus->campaignSlug->getSort() == "ASC") { ?><span class="caret ewSortUp"></span><?php } elseif ($campaign_aboutus->campaignSlug->getSort() == "DESC") { ?><span class="caret"></span><?php } ?></span></div>
+		</div></div></th>
+	<?php } ?>
+<?php } ?>
 <?php if ($campaign_aboutus->sliderImage->Visible) { // sliderImage ?>
 	<?php if ($campaign_aboutus->SortUrl($campaign_aboutus->sliderImage) == "") { ?>
 		<th data-name="sliderImage" class="<?php echo $campaign_aboutus->sliderImage->HeaderCellClass() ?>"><div id="elh_campaign_aboutus_sliderImage" class="campaign_aboutus_sliderImage"><div class="ewTableHeaderCaption"><?php echo $campaign_aboutus->sliderImage->FldCaption() ?></div></div></th>
@@ -2850,6 +2883,14 @@ $campaign_aboutus_list->ListOptions->Render("body", "left", $campaign_aboutus_li
 <span id="el<?php echo $campaign_aboutus_list->RowCnt ?>_campaign_aboutus_title_ar" class="campaign_aboutus_title_ar">
 <span<?php echo $campaign_aboutus->title_ar->ViewAttributes() ?>>
 <?php echo $campaign_aboutus->title_ar->ListViewValue() ?></span>
+</span>
+</td>
+	<?php } ?>
+	<?php if ($campaign_aboutus->campaignSlug->Visible) { // campaignSlug ?>
+		<td data-name="campaignSlug"<?php echo $campaign_aboutus->campaignSlug->CellAttributes() ?>>
+<span id="el<?php echo $campaign_aboutus_list->RowCnt ?>_campaign_aboutus_campaignSlug" class="campaign_aboutus_campaignSlug">
+<span<?php echo $campaign_aboutus->campaignSlug->ViewAttributes() ?>>
+<?php echo $campaign_aboutus->campaignSlug->ListViewValue() ?></span>
 </span>
 </td>
 	<?php } ?>

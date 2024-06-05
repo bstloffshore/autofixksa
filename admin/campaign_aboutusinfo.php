@@ -10,6 +10,7 @@ class ccampaign_aboutus extends cTable {
 	var $id;
 	var $title;
 	var $title_ar;
+	var $campaignSlug;
 	var $sliderImage;
 	var $sliderImage_ar;
 	var $description;
@@ -81,6 +82,11 @@ class ccampaign_aboutus extends cTable {
 		$this->title_ar = new cField('campaign_aboutus', 'campaign_aboutus', 'x_title_ar', 'title_ar', '`title_ar`', '`title_ar`', 200, -1, FALSE, '`title_ar`', FALSE, FALSE, FALSE, 'FORMATTED TEXT', 'TEXT');
 		$this->title_ar->Sortable = TRUE; // Allow sort
 		$this->fields['title_ar'] = &$this->title_ar;
+
+		// campaignSlug
+		$this->campaignSlug = new cField('campaign_aboutus', 'campaign_aboutus', 'x_campaignSlug', 'campaignSlug', '`campaignSlug`', '`campaignSlug`', 200, -1, FALSE, '`campaignSlug`', FALSE, FALSE, FALSE, 'FORMATTED TEXT', 'TEXT');
+		$this->campaignSlug->Sortable = TRUE; // Allow sort
+		$this->fields['campaignSlug'] = &$this->campaignSlug;
 
 		// sliderImage
 		$this->sliderImage = new cField('campaign_aboutus', 'campaign_aboutus', 'x_sliderImage', 'sliderImage', '`sliderImage`', '`sliderImage`', 200, -1, TRUE, '`sliderImage`', FALSE, FALSE, FALSE, 'IMAGE', 'FILE');
@@ -731,6 +737,7 @@ class ccampaign_aboutus extends cTable {
 		$this->id->setDbValue($rs->fields('id'));
 		$this->title->setDbValue($rs->fields('title'));
 		$this->title_ar->setDbValue($rs->fields('title_ar'));
+		$this->campaignSlug->setDbValue($rs->fields('campaignSlug'));
 		$this->sliderImage->Upload->DbValue = $rs->fields('sliderImage');
 		$this->sliderImage_ar->Upload->DbValue = $rs->fields('sliderImage_ar');
 		$this->description->setDbValue($rs->fields('description'));
@@ -804,6 +811,10 @@ class ccampaign_aboutus extends cTable {
 		// title_ar
 		$this->title_ar->ViewValue = $this->title_ar->CurrentValue;
 		$this->title_ar->ViewCustomAttributes = "";
+
+		// campaignSlug
+		$this->campaignSlug->ViewValue = $this->campaignSlug->CurrentValue;
+		$this->campaignSlug->ViewCustomAttributes = "";
 
 		// sliderImage
 		$this->sliderImage->UploadPath = 'uploads/campaign';
@@ -931,6 +942,11 @@ class ccampaign_aboutus extends cTable {
 		$this->title_ar->LinkCustomAttributes = "";
 		$this->title_ar->HrefValue = "";
 		$this->title_ar->TooltipValue = "";
+
+		// campaignSlug
+		$this->campaignSlug->LinkCustomAttributes = "";
+		$this->campaignSlug->HrefValue = "";
+		$this->campaignSlug->TooltipValue = "";
 
 		// sliderImage
 		$this->sliderImage->LinkCustomAttributes = "";
@@ -1111,6 +1127,12 @@ class ccampaign_aboutus extends cTable {
 		$this->title_ar->EditCustomAttributes = "";
 		$this->title_ar->EditValue = $this->title_ar->CurrentValue;
 		$this->title_ar->PlaceHolder = ew_RemoveHtml($this->title_ar->FldCaption());
+
+		// campaignSlug
+		$this->campaignSlug->EditAttrs["class"] = "form-control";
+		$this->campaignSlug->EditCustomAttributes = "";
+		$this->campaignSlug->EditValue = $this->campaignSlug->CurrentValue;
+		$this->campaignSlug->PlaceHolder = ew_RemoveHtml($this->campaignSlug->FldCaption());
 
 		// sliderImage
 		$this->sliderImage->EditAttrs["class"] = "form-control";
@@ -1304,6 +1326,7 @@ class ccampaign_aboutus extends cTable {
 					if ($this->id->Exportable) $Doc->ExportCaption($this->id);
 					if ($this->title->Exportable) $Doc->ExportCaption($this->title);
 					if ($this->title_ar->Exportable) $Doc->ExportCaption($this->title_ar);
+					if ($this->campaignSlug->Exportable) $Doc->ExportCaption($this->campaignSlug);
 					if ($this->sliderImage->Exportable) $Doc->ExportCaption($this->sliderImage);
 					if ($this->sliderImage_ar->Exportable) $Doc->ExportCaption($this->sliderImage_ar);
 					if ($this->description->Exportable) $Doc->ExportCaption($this->description);
@@ -1332,6 +1355,7 @@ class ccampaign_aboutus extends cTable {
 					if ($this->id->Exportable) $Doc->ExportCaption($this->id);
 					if ($this->title->Exportable) $Doc->ExportCaption($this->title);
 					if ($this->title_ar->Exportable) $Doc->ExportCaption($this->title_ar);
+					if ($this->campaignSlug->Exportable) $Doc->ExportCaption($this->campaignSlug);
 					if ($this->sliderImage->Exportable) $Doc->ExportCaption($this->sliderImage);
 					if ($this->sliderImage_ar->Exportable) $Doc->ExportCaption($this->sliderImage_ar);
 					if ($this->section_01_title->Exportable) $Doc->ExportCaption($this->section_01_title);
@@ -1388,6 +1412,7 @@ class ccampaign_aboutus extends cTable {
 						if ($this->id->Exportable) $Doc->ExportField($this->id);
 						if ($this->title->Exportable) $Doc->ExportField($this->title);
 						if ($this->title_ar->Exportable) $Doc->ExportField($this->title_ar);
+						if ($this->campaignSlug->Exportable) $Doc->ExportField($this->campaignSlug);
 						if ($this->sliderImage->Exportable) $Doc->ExportField($this->sliderImage);
 						if ($this->sliderImage_ar->Exportable) $Doc->ExportField($this->sliderImage_ar);
 						if ($this->description->Exportable) $Doc->ExportField($this->description);
@@ -1416,6 +1441,7 @@ class ccampaign_aboutus extends cTable {
 						if ($this->id->Exportable) $Doc->ExportField($this->id);
 						if ($this->title->Exportable) $Doc->ExportField($this->title);
 						if ($this->title_ar->Exportable) $Doc->ExportField($this->title_ar);
+						if ($this->campaignSlug->Exportable) $Doc->ExportField($this->campaignSlug);
 						if ($this->sliderImage->Exportable) $Doc->ExportField($this->sliderImage);
 						if ($this->sliderImage_ar->Exportable) $Doc->ExportField($this->sliderImage_ar);
 						if ($this->section_01_title->Exportable) $Doc->ExportField($this->section_01_title);

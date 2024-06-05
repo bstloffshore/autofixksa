@@ -89,13 +89,15 @@ if ( empty( $cslug ) ) {
 <!-- Header -->
 
 <?php
-$pageID       = 3;
-$campaboutres = $db->query( "SELECT * FROM campaign_aboutus WHERE id=?i", $pageID );
+
+$pageID       = $cslug;
+$campaboutres = $db->query( "SELECT * FROM campaign_aboutus WHERE campaignSlug=?s", $pageID );
 $campaboutrow = mysqli_fetch_assoc( $campaboutres );
 
 $title       = $campaboutrow[ 'title' . $langid ];
 $sliderImage = $campaboutrow[ 'sliderImage' . $langid ];
 $description = $campaboutrow[ 'description' . $langid ];
+
 
 $section_01_title   = $campaboutrow[ 'section_01_title' . $langid ];
 $section_01_summary = $campaboutrow[ 'section_01_summary' . $langid ];
@@ -122,7 +124,9 @@ $section_04_icon    = $campaboutrow['section_04_icon'];
 
 <div class="row">
             <div class="col-lg-12 col-md-12 text-center">
-<img src="../uploads/sliders/AUT0FIXKSA-Slider_01.jpg" style="max-width:80%;margin-bottom:10px;" class="image-fluid mx-auto">
+                <img src="../uploads/campaign/<?php echo $sliderImage ?>" style="max-width:80%;margin-bottom:10px;" class="image-fluid mx-auto">
+            </div>
+                <div class="col-lg-12 col-md-12">
                 <form id="campaignForm" name="campaignForm" class="default-form" method="post">
                     <div class="cs-header-form">
                         <input type="hidden" class="form-control" name="campaignid" id="campaignid" value="<?php echo $cid ?>">
@@ -145,11 +149,15 @@ $section_04_icon    = $campaboutrow['section_04_icon'];
                             <img id="campaign-ajaxLoader" src="../uploads/pages/ajax-loader.gif" style="display: none; margin-left: auto; margin-right: auto;">
                         </div>
                         <button type="submit" id="campaign-btn" class="btn btn-primary btn-block"><?php echo getLangText( 'submit' ) ?></button>
+                        <p><h5>Terms and conditions :</h5></p>
+                        <p>Terms and conditions apply.</p>
                     </div>
                 </form>
                 <br>
                 <div id="campaign-success-message-div" class="result sc_infobox sc_infobox_style_success" style="display: none"></div>
                 <div id="campaign-error-message-div" class="result sc_infobox sc_infobox_style_error" style="display: none"></div>
+                <div>
+            </div>
             </div>
 
 

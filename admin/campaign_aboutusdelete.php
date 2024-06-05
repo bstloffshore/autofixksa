@@ -320,6 +320,7 @@ class ccampaign_aboutus_delete extends ccampaign_aboutus {
 			$this->id->Visible = FALSE;
 		$this->title->SetVisibility();
 		$this->title_ar->SetVisibility();
+		$this->campaignSlug->SetVisibility();
 		$this->sliderImage->SetVisibility();
 		$this->sliderImage_ar->SetVisibility();
 
@@ -504,6 +505,7 @@ class ccampaign_aboutus_delete extends ccampaign_aboutus {
 		$this->id->setDbValue($row['id']);
 		$this->title->setDbValue($row['title']);
 		$this->title_ar->setDbValue($row['title_ar']);
+		$this->campaignSlug->setDbValue($row['campaignSlug']);
 		$this->sliderImage->Upload->DbValue = $row['sliderImage'];
 		$this->sliderImage->setDbValue($this->sliderImage->Upload->DbValue);
 		$this->sliderImage_ar->Upload->DbValue = $row['sliderImage_ar'];
@@ -538,6 +540,7 @@ class ccampaign_aboutus_delete extends ccampaign_aboutus {
 		$row['id'] = NULL;
 		$row['title'] = NULL;
 		$row['title_ar'] = NULL;
+		$row['campaignSlug'] = NULL;
 		$row['sliderImage'] = NULL;
 		$row['sliderImage_ar'] = NULL;
 		$row['description'] = NULL;
@@ -573,6 +576,7 @@ class ccampaign_aboutus_delete extends ccampaign_aboutus {
 		$this->id->DbValue = $row['id'];
 		$this->title->DbValue = $row['title'];
 		$this->title_ar->DbValue = $row['title_ar'];
+		$this->campaignSlug->DbValue = $row['campaignSlug'];
 		$this->sliderImage->Upload->DbValue = $row['sliderImage'];
 		$this->sliderImage_ar->Upload->DbValue = $row['sliderImage_ar'];
 		$this->description->DbValue = $row['description'];
@@ -650,6 +654,10 @@ class ccampaign_aboutus_delete extends ccampaign_aboutus {
 		// title_ar
 		$this->title_ar->ViewValue = $this->title_ar->CurrentValue;
 		$this->title_ar->ViewCustomAttributes = "";
+
+		// campaignSlug
+		$this->campaignSlug->ViewValue = $this->campaignSlug->CurrentValue;
+		$this->campaignSlug->ViewCustomAttributes = "";
 
 		// sliderImage
 		$this->sliderImage->UploadPath = 'uploads/campaign';
@@ -769,6 +777,11 @@ class ccampaign_aboutus_delete extends ccampaign_aboutus {
 			$this->title_ar->LinkCustomAttributes = "";
 			$this->title_ar->HrefValue = "";
 			$this->title_ar->TooltipValue = "";
+
+			// campaignSlug
+			$this->campaignSlug->LinkCustomAttributes = "";
+			$this->campaignSlug->HrefValue = "";
+			$this->campaignSlug->TooltipValue = "";
 
 			// sliderImage
 			$this->sliderImage->LinkCustomAttributes = "";
@@ -1070,6 +1083,9 @@ $campaign_aboutus_delete->ShowMessage();
 <?php if ($campaign_aboutus->title_ar->Visible) { // title_ar ?>
 		<th class="<?php echo $campaign_aboutus->title_ar->HeaderCellClass() ?>"><span id="elh_campaign_aboutus_title_ar" class="campaign_aboutus_title_ar"><?php echo $campaign_aboutus->title_ar->FldCaption() ?></span></th>
 <?php } ?>
+<?php if ($campaign_aboutus->campaignSlug->Visible) { // campaignSlug ?>
+		<th class="<?php echo $campaign_aboutus->campaignSlug->HeaderCellClass() ?>"><span id="elh_campaign_aboutus_campaignSlug" class="campaign_aboutus_campaignSlug"><?php echo $campaign_aboutus->campaignSlug->FldCaption() ?></span></th>
+<?php } ?>
 <?php if ($campaign_aboutus->sliderImage->Visible) { // sliderImage ?>
 		<th class="<?php echo $campaign_aboutus->sliderImage->HeaderCellClass() ?>"><span id="elh_campaign_aboutus_sliderImage" class="campaign_aboutus_sliderImage"><?php echo $campaign_aboutus->sliderImage->FldCaption() ?></span></th>
 <?php } ?>
@@ -1118,6 +1134,14 @@ while (!$campaign_aboutus_delete->Recordset->EOF) {
 <span id="el<?php echo $campaign_aboutus_delete->RowCnt ?>_campaign_aboutus_title_ar" class="campaign_aboutus_title_ar">
 <span<?php echo $campaign_aboutus->title_ar->ViewAttributes() ?>>
 <?php echo $campaign_aboutus->title_ar->ListViewValue() ?></span>
+</span>
+</td>
+<?php } ?>
+<?php if ($campaign_aboutus->campaignSlug->Visible) { // campaignSlug ?>
+		<td<?php echo $campaign_aboutus->campaignSlug->CellAttributes() ?>>
+<span id="el<?php echo $campaign_aboutus_delete->RowCnt ?>_campaign_aboutus_campaignSlug" class="campaign_aboutus_campaignSlug">
+<span<?php echo $campaign_aboutus->campaignSlug->ViewAttributes() ?>>
+<?php echo $campaign_aboutus->campaignSlug->ListViewValue() ?></span>
 </span>
 </td>
 <?php } ?>

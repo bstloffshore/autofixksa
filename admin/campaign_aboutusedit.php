@@ -325,6 +325,7 @@ class ccampaign_aboutus_edit extends ccampaign_aboutus {
 			$this->id->Visible = FALSE;
 		$this->title->SetVisibility();
 		$this->title_ar->SetVisibility();
+		$this->campaignSlug->SetVisibility();
 		$this->sliderImage->SetVisibility();
 		$this->sliderImage_ar->SetVisibility();
 		$this->description->SetVisibility();
@@ -604,6 +605,9 @@ class ccampaign_aboutus_edit extends ccampaign_aboutus {
 		if (!$this->title_ar->FldIsDetailKey) {
 			$this->title_ar->setFormValue($objForm->GetValue("x_title_ar"));
 		}
+		if (!$this->campaignSlug->FldIsDetailKey) {
+			$this->campaignSlug->setFormValue($objForm->GetValue("x_campaignSlug"));
+		}
 		if (!$this->description->FldIsDetailKey) {
 			$this->description->setFormValue($objForm->GetValue("x_description"));
 		}
@@ -678,6 +682,7 @@ class ccampaign_aboutus_edit extends ccampaign_aboutus {
 		$this->id->CurrentValue = $this->id->FormValue;
 		$this->title->CurrentValue = $this->title->FormValue;
 		$this->title_ar->CurrentValue = $this->title_ar->FormValue;
+		$this->campaignSlug->CurrentValue = $this->campaignSlug->FormValue;
 		$this->description->CurrentValue = $this->description->FormValue;
 		$this->description_ar->CurrentValue = $this->description_ar->FormValue;
 		$this->section_01_title->CurrentValue = $this->section_01_title->FormValue;
@@ -738,6 +743,7 @@ class ccampaign_aboutus_edit extends ccampaign_aboutus {
 		$this->id->setDbValue($row['id']);
 		$this->title->setDbValue($row['title']);
 		$this->title_ar->setDbValue($row['title_ar']);
+		$this->campaignSlug->setDbValue($row['campaignSlug']);
 		$this->sliderImage->Upload->DbValue = $row['sliderImage'];
 		$this->sliderImage->setDbValue($this->sliderImage->Upload->DbValue);
 		$this->sliderImage_ar->Upload->DbValue = $row['sliderImage_ar'];
@@ -772,6 +778,7 @@ class ccampaign_aboutus_edit extends ccampaign_aboutus {
 		$row['id'] = NULL;
 		$row['title'] = NULL;
 		$row['title_ar'] = NULL;
+		$row['campaignSlug'] = NULL;
 		$row['sliderImage'] = NULL;
 		$row['sliderImage_ar'] = NULL;
 		$row['description'] = NULL;
@@ -807,6 +814,7 @@ class ccampaign_aboutus_edit extends ccampaign_aboutus {
 		$this->id->DbValue = $row['id'];
 		$this->title->DbValue = $row['title'];
 		$this->title_ar->DbValue = $row['title_ar'];
+		$this->campaignSlug->DbValue = $row['campaignSlug'];
 		$this->sliderImage->Upload->DbValue = $row['sliderImage'];
 		$this->sliderImage_ar->Upload->DbValue = $row['sliderImage_ar'];
 		$this->description->DbValue = $row['description'];
@@ -906,6 +914,10 @@ class ccampaign_aboutus_edit extends ccampaign_aboutus {
 		// title_ar
 		$this->title_ar->ViewValue = $this->title_ar->CurrentValue;
 		$this->title_ar->ViewCustomAttributes = "";
+
+		// campaignSlug
+		$this->campaignSlug->ViewValue = $this->campaignSlug->CurrentValue;
+		$this->campaignSlug->ViewCustomAttributes = "";
 
 		// sliderImage
 		$this->sliderImage->UploadPath = 'uploads/campaign';
@@ -1033,6 +1045,11 @@ class ccampaign_aboutus_edit extends ccampaign_aboutus {
 			$this->title_ar->LinkCustomAttributes = "";
 			$this->title_ar->HrefValue = "";
 			$this->title_ar->TooltipValue = "";
+
+			// campaignSlug
+			$this->campaignSlug->LinkCustomAttributes = "";
+			$this->campaignSlug->HrefValue = "";
+			$this->campaignSlug->TooltipValue = "";
 
 			// sliderImage
 			$this->sliderImage->LinkCustomAttributes = "";
@@ -1200,6 +1217,12 @@ class ccampaign_aboutus_edit extends ccampaign_aboutus {
 			$this->title_ar->EditCustomAttributes = "";
 			$this->title_ar->EditValue = ew_HtmlEncode($this->title_ar->CurrentValue);
 			$this->title_ar->PlaceHolder = ew_RemoveHtml($this->title_ar->FldCaption());
+
+			// campaignSlug
+			$this->campaignSlug->EditAttrs["class"] = "form-control";
+			$this->campaignSlug->EditCustomAttributes = "";
+			$this->campaignSlug->EditValue = ew_HtmlEncode($this->campaignSlug->CurrentValue);
+			$this->campaignSlug->PlaceHolder = ew_RemoveHtml($this->campaignSlug->FldCaption());
 
 			// sliderImage
 			$this->sliderImage->EditAttrs["class"] = "form-control";
@@ -1379,6 +1402,10 @@ class ccampaign_aboutus_edit extends ccampaign_aboutus {
 			$this->title_ar->LinkCustomAttributes = "";
 			$this->title_ar->HrefValue = "";
 
+			// campaignSlug
+			$this->campaignSlug->LinkCustomAttributes = "";
+			$this->campaignSlug->HrefValue = "";
+
 			// sliderImage
 			$this->sliderImage->LinkCustomAttributes = "";
 			$this->sliderImage->UploadPath = 'uploads/campaign';
@@ -1554,6 +1581,9 @@ class ccampaign_aboutus_edit extends ccampaign_aboutus {
 
 			// title_ar
 			$this->title_ar->SetDbValueDef($rsnew, $this->title_ar->CurrentValue, NULL, $this->title_ar->ReadOnly);
+
+			// campaignSlug
+			$this->campaignSlug->SetDbValueDef($rsnew, $this->campaignSlug->CurrentValue, NULL, $this->campaignSlug->ReadOnly);
 
 			// sliderImage
 			if ($this->sliderImage->Visible && !$this->sliderImage->ReadOnly && !$this->sliderImage->Upload->KeepFile) {
@@ -2052,6 +2082,16 @@ $campaign_aboutus_edit->ShowMessage();
 <input type="text" data-table="campaign_aboutus" data-field="x_title_ar" data-page="1" name="x_title_ar" id="x_title_ar" size="30" maxlength="255" placeholder="<?php echo ew_HtmlEncode($campaign_aboutus->title_ar->getPlaceHolder()) ?>" value="<?php echo $campaign_aboutus->title_ar->EditValue ?>"<?php echo $campaign_aboutus->title_ar->EditAttributes() ?>>
 </span>
 <?php echo $campaign_aboutus->title_ar->CustomMsg ?></div></div>
+	</div>
+<?php } ?>
+<?php if ($campaign_aboutus->campaignSlug->Visible) { // campaignSlug ?>
+	<div id="r_campaignSlug" class="form-group">
+		<label id="elh_campaign_aboutus_campaignSlug" for="x_campaignSlug" class="<?php echo $campaign_aboutus_edit->LeftColumnClass ?>"><?php echo $campaign_aboutus->campaignSlug->FldCaption() ?></label>
+		<div class="<?php echo $campaign_aboutus_edit->RightColumnClass ?>"><div<?php echo $campaign_aboutus->campaignSlug->CellAttributes() ?>>
+<span id="el_campaign_aboutus_campaignSlug">
+<input type="text" data-table="campaign_aboutus" data-field="x_campaignSlug" data-page="1" name="x_campaignSlug" id="x_campaignSlug" size="30" maxlength="255" placeholder="<?php echo ew_HtmlEncode($campaign_aboutus->campaignSlug->getPlaceHolder()) ?>" value="<?php echo $campaign_aboutus->campaignSlug->EditValue ?>"<?php echo $campaign_aboutus->campaignSlug->EditAttributes() ?>>
+</span>
+<?php echo $campaign_aboutus->campaignSlug->CustomMsg ?></div></div>
 	</div>
 <?php } ?>
 <?php if ($campaign_aboutus->sliderImage->Visible) { // sliderImage ?>
