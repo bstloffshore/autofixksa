@@ -20,6 +20,8 @@ if ( empty( $cslug ) ) {
 	$campaign_info_res = $db->query( "select * from `sliders` WHERE `campain_slug` = ?s AND `active` = 1", $_GET['cslug'] );
 	$campaign_info_row = mysqli_fetch_assoc( $campaign_info_res );
 	$cid               = $campaign_info_row["sliderID"];
+	$sliderImage               = $campaign_info_row["image"];
+	$campaignTitle               = $campaign_info_row["campaign_title"];
 
 	if ( empty( $cid ) ) {
 		header( "location: /" );
@@ -88,18 +90,7 @@ if ( empty( $cslug ) ) {
 
 <!-- Header -->
 
-<?php
 
-$pageID       = $cslug;
-$campaboutres = $db->query( "SELECT * FROM sliders WHERE campaign_title=?s", $pageID );
-$campaboutrow = mysqli_fetch_assoc( $campaboutres );
-
-$title       = $campaboutrow[ 'campaign_title' . $langid ];
-$sliderImage = $campaboutrow[ 'image'];
-
-
-
-?>
 
 
     <div class="">
