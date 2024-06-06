@@ -1132,6 +1132,26 @@
       <field id="title_ar">
         <phrase id="fldcaption" value="Arabic Title" />
       </field>
+      <field id="campaign_title">
+        <phrase id="fldcaption" value="Campaign Title" />
+      </field>
+      <field id="campain_slug">
+        <phrase id="fldcaption" value="Campaign Slug" />
+      </field>
+      <field id="campaign_start_date">
+        <phrase id="fldcaption" value="Campaign Start Date" />
+      </field>
+      <field id="campaign_end_date">
+        <phrase id="fldcaption" value="Campaign End Date" />
+      </field>
+       <field id="is_general_image">
+        <phrase id="fldcaption" value="Is Genral Image" />
+        <phrase id="fldtagvalue1" value="1" />
+        <phrase id="fldtagcaption1" value="Yes" />
+        <phrase id="fldtagvalue2" value="0" />
+        <phrase id="fldtagcaption2" value="No" />
+      </field>
+      
       <field id="image">
         <phrase id="fldcaption" value="Image (w 1920 x h 800)" />
       </field>

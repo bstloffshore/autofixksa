@@ -17,9 +17,9 @@ if ( empty( $cslug ) ) {
 	header( "location: /" );
 	exit();
 } else {
-	$campaign_info_res = $db->query( "select * from `campaign_master` WHERE `campaignSlug` = ?s AND `active` = 1", $_GET['cslug'] );
+	$campaign_info_res = $db->query( "select * from `sliders` WHERE `campain_slug` = ?s AND `active` = 1", $_GET['cslug'] );
 	$campaign_info_row = mysqli_fetch_assoc( $campaign_info_res );
-	$cid               = $campaign_info_row["campaignID"];
+	$cid               = $campaign_info_row["sliderID"];
 
 	if ( empty( $cid ) ) {
 		header( "location: /" );
@@ -91,29 +91,13 @@ if ( empty( $cslug ) ) {
 <?php
 
 $pageID       = $cslug;
-$campaboutres = $db->query( "SELECT * FROM campaign_aboutus WHERE campaignSlug=?s", $pageID );
+$campaboutres = $db->query( "SELECT * FROM sliders WHERE campaign_title=?s", $pageID );
 $campaboutrow = mysqli_fetch_assoc( $campaboutres );
 
-$title       = $campaboutrow[ 'title' . $langid ];
-$sliderImage = $campaboutrow[ 'sliderImage' . $langid ];
-$description = $campaboutrow[ 'description' . $langid ];
+$title       = $campaboutrow[ 'campaign_title' . $langid ];
+$sliderImage = $campaboutrow[ 'image'];
 
 
-$section_01_title   = $campaboutrow[ 'section_01_title' . $langid ];
-$section_01_summary = $campaboutrow[ 'section_01_summary' . $langid ];
-$section_01_icon    = $campaboutrow['section_01_icon'];
-
-$section_02_title   = $campaboutrow[ 'section_02_title' . $langid ];
-$section_02_summary = $campaboutrow[ 'section_02_summary' . $langid ];
-$section_02_icon    = $campaboutrow['section_02_icon'];
-
-$section_03_title   = $campaboutrow[ 'section_03_title' . $langid ];
-$section_03_summary = $campaboutrow[ 'section_03_summary' . $langid ];
-$section_03_icon    = $campaboutrow['section_03_icon'];
-
-$section_04_title   = $campaboutrow[ 'section_04_title' . $langid ];
-$section_04_summary = $campaboutrow[ 'section_04_summary' . $langid ];
-$section_04_icon    = $campaboutrow['section_04_icon'];
 
 ?>
 
@@ -124,12 +108,13 @@ $section_04_icon    = $campaboutrow['section_04_icon'];
 
 <div class="row">
             <div class="col-lg-12 col-md-12 text-center">
-                <img src="../uploads/campaign/<?php echo $sliderImage ?>" style="max-width:80%;margin-bottom:10px;" class="image-fluid mx-auto">
+                <img src="../uploads/sliders/<?php echo $sliderImage ?>" style="max-width:80%;margin-bottom:10px;" class="image-fluid mx-auto">
             </div>
                 <div class="col-lg-12 col-md-12">
                 <form id="campaignForm" name="campaignForm" class="default-form" method="post">
                     <div class="cs-header-form">
                         <input type="hidden" class="form-control" name="campaignid" id="campaignid" value="<?php echo $cid ?>">
+                        <input type="hidden" class="form-control" name="campaign_title" id="campaign_title" value="<?php echo $title ?>">
                         <input type="hidden" class="form-control" name="campaignlang" id="campaignlang" value="<?php echo $lang ?>">
                         <h2 class="text-center"><?php echo getLangText( 'book our services now' ) ?></h2>
                         <br>
@@ -149,7 +134,7 @@ $section_04_icon    = $campaboutrow['section_04_icon'];
                             <img id="campaign-ajaxLoader" src="../uploads/pages/ajax-loader.gif" style="display: none; margin-left: auto; margin-right: auto;">
                         </div>
                         <button type="submit" id="campaign-btn" class="btn btn-primary btn-block"><?php echo getLangText( 'submit' ) ?></button>
-                        <p><h5>Terms and conditions :</h5></p>
+                        
                         <p>Terms and conditions apply.</p>
                     </div>
                 </form>
@@ -270,12 +255,13 @@ $section_04_icon    = $campaboutrow['section_04_icon'];
 
                 if (statusmessage.toString().trim() === "SUCCESS") {
 
-                    // $("#campaign-success-message-div").show();
-                    // $('#campaignForm')[0].reset();
-                    // $('#campaign-ajaxLoader').hide();
-                    // $('#campaign-btn').show();
-                    // $("#campaign-success-message-div").html(message).delay(3000).fadeOut('slow');
-                    window.location.href="/thank-you";
+                    $("#campaign-success-message-div").show();
+                    $('#campaignForm')[0].reset();
+                    $('#campaign-ajaxLoader').hide();
+                    $('#campaign-btn').show();
+                    $("#campaign-success-message-div").html(message).delay(3000).fadeOut('slow');
+                    //window.location.href="/thank-you";
+                    //location.reload();
                 }
 
                 if (statusmessage.toString().trim() === "ERROR") {

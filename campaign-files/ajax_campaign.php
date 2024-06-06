@@ -8,6 +8,7 @@ if (isset($_POST))
     if ($_SERVER['REQUEST_METHOD'] == 'POST')
     {
         $campaign_id             = filter_var($_POST['campaignid'],FILTER_SANITIZE_STRING);
+        $campaign_title             = filter_var($_POST['campaign_title'],FILTER_SANITIZE_STRING);
         $campaign_lang           = filter_var($_POST['campaignlang'],FILTER_SANITIZE_STRING);
         $campaign_name           = filter_var($_POST['campaignname'],FILTER_SANITIZE_STRING);
         $campaign_email          = filter_var($_POST['campaignemail'],FILTER_SANITIZE_EMAIL);
@@ -17,8 +18,8 @@ if (isset($_POST))
 
 
 
-        $result = $db->query("INSERT INTO campaign_report (campaignID,campaignLanguage,fullName, email, phone, message,status)
-                                VALUES(?s,?s,?s,?s,?s,?s,?s)", $campaign_id, $campaign_lang, $campaign_name, $campaign_email, $campaign_phone, $campaign_message, 'NEW');
+        $result = $db->query("INSERT INTO campaign_report (campaignID,campaign_title,campaignLanguage,fullName, email, phone, message,status)
+                                VALUES(?s,?s,?s,?s,?s,?s,?s,?s)", $campaign_id,$campaign_title, $campaign_lang, $campaign_name, $campaign_email, $campaign_phone, $campaign_message, 'NEW');
 
 
         $res = $db->query("SELECT * FROM smtp_details WHERE active  = 1");
@@ -50,9 +51,9 @@ if (isset($_POST))
         $resultPageMessage = $row["resultPageMessage"];
 
         // campaign Name in Email
-        $sql2 = $db->query("SELECT * FROM campaign_master WHERE campaignID = ?i",$campaign_id); //
+        $sql2 = $db->query("SELECT * FROM sliders WHERE sliderID = ?i",$campaign_id); //
         $row2 = mysqli_fetch_assoc($sql2);
-        $campaign = $row2["title"];
+        $campaign = $row2["campaign_title"];
 
 
         if ($debug) echo "Client Sub: " . $sql;

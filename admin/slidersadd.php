@@ -330,6 +330,11 @@ class csliders_add extends csliders {
 		$this->buttonlinkTo->SetVisibility();
 		$this->so->SetVisibility();
 		$this->active->SetVisibility();
+		$this->campaign_title->SetVisibility();
+		$this->campain_slug->SetVisibility();
+		$this->campaign_start_date->SetVisibility();
+		$this->campaign_end_date->SetVisibility();
+		$this->is_general_image->SetVisibility();
 
 		// Set up multi page object
 		$this->SetupMultiPages();
@@ -559,6 +564,11 @@ class csliders_add extends csliders {
 		$this->buttonlinkTo->OldValue = $this->buttonlinkTo->CurrentValue;
 		$this->so->CurrentValue = 0;
 		$this->active->CurrentValue = 1;
+		$this->campaign_title->CurrentValue = NULL;
+		$this->campain_slug->CurrentValue = NULL;
+		$this->campaign_start_date->CurrentValue = NULL;
+		$this->campaign_end_date->CurrentValue = NULL;
+		$this->is_general_image->CurrentValue = 0;
 	}
 
 	// Load form values
@@ -594,6 +604,24 @@ class csliders_add extends csliders {
 		if (!$this->active->FldIsDetailKey) {
 			$this->active->setFormValue($objForm->GetValue("x_active"));
 		}
+
+		if (!$this->campaign_title->FldIsDetailKey) {
+			$this->campaign_title->setFormValue($objForm->GetValue("x_campaign_title"));
+		}
+		if (!$this->campain_slug->FldIsDetailKey) {
+			$this->campain_slug->setFormValue($objForm->GetValue("x_campain_slug"));
+		}
+		if (!$this->campaign_start_date->FldIsDetailKey) {
+			$this->campaign_start_date->setFormValue($objForm->GetValue("x_campaign_start_date"));
+			$this->campaign_start_date->CurrentValue = ew_UnFormatDateTime($this->campaign_start_date->CurrentValue, 7);
+		}
+		if (!$this->campaign_end_date->FldIsDetailKey) {
+			$this->campaign_end_date->setFormValue($objForm->GetValue("x_campaign_end_date"));
+			$this->campaign_end_date->CurrentValue = ew_UnFormatDateTime($this->campaign_end_date->CurrentValue, 7);
+		}
+		if (!$this->is_general_image->FldIsDetailKey) {
+			$this->is_general_image->setFormValue($objForm->GetValue("x_is_general_image"));
+		}
 	}
 
 	// Restore form values
@@ -608,6 +636,11 @@ class csliders_add extends csliders {
 		$this->buttonlinkTo->CurrentValue = $this->buttonlinkTo->FormValue;
 		$this->so->CurrentValue = $this->so->FormValue;
 		$this->active->CurrentValue = $this->active->FormValue;
+		$this->campaign_title->CurrentValue = $this->campaign_title->FormValue;
+		$this->campain_slug->CurrentValue = $this->campain_slug->FormValue;
+		$this->campaign_start_date->CurrentValue = $this->campaign_start_date->FormValue;
+		$this->campaign_end_date->CurrentValue = $this->campaign_end_date->FormValue;
+		$this->is_general_image->CurrentValue = $this->is_general_image->FormValue;
 	}
 
 	// Load row based on key values
@@ -655,6 +688,11 @@ class csliders_add extends csliders {
 		$this->buttonlinkTo->setDbValue($row['buttonlinkTo']);
 		$this->so->setDbValue($row['so']);
 		$this->active->setDbValue($row['active']);
+		$this->campaign_title->setDbValue($row['campaign_title']);
+		$this->campain_slug->setDbValue($row['campain_slug']);
+		$this->campaign_start_date->setDbValue($row['campaign_start_date']);
+		$this->campaign_end_date->setDbValue($row['campaign_end_date']);
+		$this->is_general_image->setDbValue($row['is_general_image']);
 	}
 
 	// Return a row with default values
@@ -672,6 +710,11 @@ class csliders_add extends csliders {
 		$row['buttonlinkTo'] = $this->buttonlinkTo->CurrentValue;
 		$row['so'] = $this->so->CurrentValue;
 		$row['active'] = $this->active->CurrentValue;
+		$row['campaign_title'] = $this->campaign_title->CurrentValue;
+		$row['campain_slug'] = $this->campain_slug->CurrentValue;
+		$row['campaign_start_date'] = $this->campaign_start_date->CurrentValue;
+		$row['campaign_end_date'] = $this->campaign_end_date->CurrentValue;
+		$row['is_general_image'] = $this->is_general_image->CurrentValue;
 		return $row;
 	}
 
@@ -691,6 +734,12 @@ class csliders_add extends csliders {
 		$this->buttonlinkTo->DbValue = $row['buttonlinkTo'];
 		$this->so->DbValue = $row['so'];
 		$this->active->DbValue = $row['active'];
+		$this->campaign_title->DbValue = $row['campaign_title'];
+		$this->campain_slug->DbValue = $row['campain_slug'];
+		$this->campaign_start_date->DbValue = $row['campaign_start_date'];
+		$this->campaign_end_date->DbValue = $row['campaign_end_date'];
+		$this->is_general_image->DbValue = $row['is_general_image'];
+		
 	}
 
 	// Load old record
@@ -795,6 +844,31 @@ class csliders_add extends csliders {
 		}
 		$this->active->ViewCustomAttributes = "";
 
+
+		// campaign_title
+		$this->campaign_title->ViewValue = $this->campaign_title->CurrentValue;
+		$this->campaign_title->ViewCustomAttributes = "";
+
+		// campain_slug
+		$this->campain_slug->ViewValue = $this->campain_slug->CurrentValue;
+		$this->campain_slug->ViewCustomAttributes = "";
+
+		// campaign_start_date
+		$this->campaign_start_date->ViewValue = $this->campaign_start_date->CurrentValue;
+		$this->campaign_start_date->ViewCustomAttributes = "";
+
+		// campaign_end_date
+		$this->campaign_end_date->ViewValue = $this->campaign_end_date->CurrentValue;
+		$this->campaign_end_date->ViewCustomAttributes = "";
+
+		// is_general_image
+		if (strval($this->is_general_image->CurrentValue) <> "") {
+			$this->is_general_image->ViewValue = $this->is_general_image->OptionCaption($this->is_general_image->CurrentValue);
+		} else {
+			$this->is_general_image->ViewValue = NULL;
+		}
+		$this->is_general_image->ViewCustomAttributes = "";
+
 			// title
 			$this->title->LinkCustomAttributes = "";
 			$this->title->HrefValue = "";
@@ -858,6 +932,35 @@ class csliders_add extends csliders {
 			$this->active->LinkCustomAttributes = "";
 			$this->active->HrefValue = "";
 			$this->active->TooltipValue = "";
+
+			// campaign_title
+			$this->campaign_title->LinkCustomAttributes = "";
+			$this->campaign_title->HrefValue = "";
+			$this->campaign_title->TooltipValue = "";
+
+			// campain_slug
+			$this->campain_slug->LinkCustomAttributes = "";
+			$this->campain_slug->HrefValue = "";
+			$this->campain_slug->TooltipValue = "";
+
+			// campaign_start_date
+			$this->campaign_start_date->LinkCustomAttributes = "";
+			$this->campaign_start_date->HrefValue = "";
+			$this->campaign_start_date->TooltipValue = "";
+
+			// campaign_end_date
+			$this->campaign_end_date->LinkCustomAttributes = "";
+			$this->campaign_end_date->HrefValue = "";
+			$this->campaign_end_date->TooltipValue = "";
+
+			// is_general_image
+			$this->is_general_image->LinkCustomAttributes = "";
+			$this->is_general_image->HrefValue = "";
+			$this->is_general_image->TooltipValue = "";
+
+
+
+
 		} elseif ($this->RowType == EW_ROWTYPE_ADD) { // Add row
 
 			// title
@@ -929,6 +1032,36 @@ class csliders_add extends csliders {
 			$this->active->EditCustomAttributes = "";
 			$this->active->EditValue = $this->active->Options(TRUE);
 
+			// campaign_title
+			$this->campaign_title->EditAttrs["class"] = "form-control";
+			$this->campaign_title->EditCustomAttributes = "";
+			$this->campaign_title->EditValue = ew_HtmlEncode($this->campaign_title->CurrentValue);
+			$this->campaign_title->PlaceHolder = ew_RemoveHtml($this->campaign_title->FldCaption());
+
+			// campain_slug
+			$this->campain_slug->EditAttrs["class"] = "form-control";
+			$this->campain_slug->EditCustomAttributes = "";
+			$this->campain_slug->EditValue = ew_HtmlEncode($this->campain_slug->CurrentValue);
+			$this->campain_slug->PlaceHolder = ew_RemoveHtml($this->campain_slug->FldCaption());
+
+			// campaign_start_date
+			$this->campaign_start_date->EditAttrs["class"] = "form-control";
+			$this->campaign_start_date->EditCustomAttributes = "";
+			$this->campaign_start_date->EditValue = ew_HtmlEncode($this->campaign_start_date->CurrentValue);
+			$this->campaign_start_date->PlaceHolder = ew_RemoveHtml($this->campaign_start_date->FldCaption());
+
+			// campaign_end_date
+			$this->campaign_end_date->EditAttrs["class"] = "form-control";
+			$this->campaign_end_date->EditCustomAttributes = "";
+			$this->campaign_end_date->EditValue = ew_HtmlEncode($this->campaign_end_date->CurrentValue);
+			$this->campaign_end_date->PlaceHolder = ew_RemoveHtml($this->campaign_end_date->FldCaption());
+
+			// is_general_image
+			$this->is_general_image->EditAttrs["class"] = "form-control";
+			$this->is_general_image->EditCustomAttributes = "";
+			$this->is_general_image->EditValue = $this->is_general_image->Options(TRUE);
+
+
 			// Add refer script
 			// title
 
@@ -978,6 +1111,26 @@ class csliders_add extends csliders {
 			// active
 			$this->active->LinkCustomAttributes = "";
 			$this->active->HrefValue = "";
+
+			// campaign_title
+			$this->campaign_title->LinkCustomAttributes = "";
+			$this->campaign_title->HrefValue = "";
+
+			// campain_slug
+			$this->campain_slug->LinkCustomAttributes = "";
+			$this->campain_slug->HrefValue = "";
+
+			// campaign_start_date
+			$this->campaign_start_date->LinkCustomAttributes = "";
+			$this->campaign_start_date->HrefValue = "";
+
+			// campaign_end_date
+			$this->campaign_end_date->LinkCustomAttributes = "";
+			$this->campaign_end_date->HrefValue = "";
+
+			// is_general_image
+			$this->is_general_image->LinkCustomAttributes = "";
+			$this->is_general_image->HrefValue = "";
 		}
 		if ($this->RowType == EW_ROWTYPE_ADD || $this->RowType == EW_ROWTYPE_EDIT || $this->RowType == EW_ROWTYPE_SEARCH) // Add/Edit/Search row
 			$this->SetupFieldTitles();
@@ -1062,6 +1215,22 @@ class csliders_add extends csliders {
 
 		// active
 		$this->active->SetDbValueDef($rsnew, $this->active->CurrentValue, NULL, strval($this->active->CurrentValue) == "");
+
+		// campaign_title
+		$this->campaign_title->SetDbValueDef($rsnew, $this->campaign_title->CurrentValue, NULL, FALSE);
+
+		// campain_slug
+		$this->campain_slug->SetDbValueDef($rsnew, $this->campain_slug->CurrentValue, NULL, FALSE);
+
+		// campaign_start_date
+		$this->campaign_start_date->SetDbValueDef($rsnew, $this->campaign_start_date->CurrentValue, NULL, FALSE);
+
+		// campaign_end_date
+		$this->campaign_end_date->SetDbValueDef($rsnew, $this->campaign_end_date->CurrentValue, NULL, FALSE);
+
+		// is_general_image
+		$this->is_general_image->SetDbValueDef($rsnew, $this->is_general_image->CurrentValue, NULL, strval($this->is_general_image->CurrentValue) == "");
+
 		if ($this->image->Visible && !$this->image->Upload->KeepFile) {
 			$this->image->UploadPath = 'uploads/sliders';
 			$OldFiles = ew_Empty($this->image->Upload->DbValue) ? array() : array($this->image->Upload->DbValue);
@@ -1391,6 +1560,61 @@ $sliders_add->ShowMessage();
 <?php echo $sliders->title_ar->CustomMsg ?></div></div>
 	</div>
 <?php } ?>
+
+<?php if ($sliders->campaign_title->Visible) { // campaign_title ?>
+	<div id="r_campaign_title" class="form-group">
+		<label id="elh_sliders_campaign_title" for="x_campaign_title" class="<?php echo $sliders_add->LeftColumnClass ?>"><?php echo $sliders->campaign_title->FldCaption() ?></label>
+		<div class="<?php echo $sliders_add->RightColumnClass ?>"><div<?php echo $sliders->campaign_title->CellAttributes() ?>>
+<span id="el_sliders_campaign_title">
+<input type="text" data-table="sliders" data-field="x_campaign_title" data-page="1" name="x_campaign_title" id="x_campaign_title" size="30" maxlength="255" placeholder="<?php echo ew_HtmlEncode($sliders->campaign_title->getPlaceHolder()) ?>" value="<?php echo $sliders->campaign_title->EditValue ?>"<?php echo $sliders->campaign_title->EditAttributes() ?>>
+</span>
+<?php echo $sliders->campaign_title->CustomMsg ?></div></div>
+	</div>
+<?php } ?>
+
+<?php if ($sliders->campain_slug->Visible) { // campain_slug ?>
+	<div id="r_campain_slug" class="form-group">
+		<label id="elh_sliders_campain_slug" for="x_campain_slug" class="<?php echo $sliders_add->LeftColumnClass ?>"><?php echo $sliders->campain_slug->FldCaption() ?></label>
+		<div class="<?php echo $sliders_add->RightColumnClass ?>"><div<?php echo $sliders->campain_slug->CellAttributes() ?>>
+<span id="el_sliders_campain_slug">
+<input type="text" data-table="sliders" data-field="x_campain_slug" data-page="1" name="x_campain_slug" id="x_campain_slug" size="30" maxlength="255" placeholder="<?php echo ew_HtmlEncode($sliders->campain_slug->getPlaceHolder()) ?>" value="<?php echo $sliders->campain_slug->EditValue ?>"<?php echo $sliders->campain_slug->EditAttributes() ?>>
+</span>
+<?php echo $sliders->campain_slug->CustomMsg ?></div></div>
+	</div>
+<?php } ?>
+
+<?php if ($sliders->campaign_start_date->Visible) { // campaign_start_date ?>
+	<div id="r_campaign_start_date" class="form-group">
+		<label id="elh_sliders_campaign_start_date" for="x_campaign_start_date" class="<?php echo $sliders_add->LeftColumnClass ?>"><?php echo $sliders->campaign_start_date->FldCaption() ?></label>
+		<div class="<?php echo $sliders_add->RightColumnClass ?>"><div<?php echo $sliders->campaign_start_date->CellAttributes() ?>>
+<span id="el_sliders_campaign_start_date">
+<input type="text" data-table="sliders" data-field="x_campaign_start_date" data-format="7" name="x_campaign_start_date" id="x_campaign_start_date" placeholder="<?php echo ew_HtmlEncode($sliders->campaign_start_date->getPlaceHolder()) ?>" value="<?php echo $sliders->campaign_start_date->EditValue ?>"<?php echo $sliders->campaign_start_date->EditAttributes() ?>>
+<?php if (!$sliders->campaign_start_date->ReadOnly && !$sliders->campaign_start_date->Disabled && !isset($sliders->campaign_start_date->EditAttrs["readonly"]) && !isset($sliders->campaign_start_date->EditAttrs["disabled"])) { ?>
+<script type="text/javascript">
+ew_CreateDateTimePicker("fslidersadd", "x_campaign_start_date", {"ignoreReadonly":true,"useCurrent":false,"format":7});
+</script>
+<?php } ?>
+</span>
+<?php echo $sliders->campaign_start_date->CustomMsg ?></div></div>
+	</div>
+<?php } ?>
+
+<?php if ($sliders->campaign_end_date->Visible) { // campaign_end_date ?>
+	<div id="r_campaign_end_date" class="form-group">
+		<label id="elh_sliders_campaign_end_date" for="x_campaign_end_date" class="<?php echo $sliders_add->LeftColumnClass ?>"><?php echo $sliders->campaign_end_date->FldCaption() ?></label>
+		<div class="<?php echo $sliders_add->RightColumnClass ?>"><div<?php echo $sliders->campaign_end_date->CellAttributes() ?>>
+<span id="el_sliders_campaign_end_date">
+<input type="text" data-table="sliders" data-field="x_campaign_end_date" data-format="7" name="x_campaign_end_date" id="x_campaign_end_date" placeholder="<?php echo ew_HtmlEncode($sliders->campaign_end_date->getPlaceHolder()) ?>" value="<?php echo $sliders->campaign_end_date->EditValue ?>"<?php echo $sliders->campaign_end_date->EditAttributes() ?>>
+<?php if (!$sliders->campaign_end_date->ReadOnly && !$sliders->campaign_end_date->Disabled && !isset($sliders->campaign_end_date->EditAttrs["readonly"]) && !isset($sliders->campaign_end_date->EditAttrs["disabled"])) { ?>
+<script type="text/javascript">
+ew_CreateDateTimePicker("fslidersadd", "x_campaign_end_date", {"ignoreReadonly":true,"useCurrent":false,"format":7});
+</script>
+<?php } ?>
+</span>
+<?php echo $sliders->campaign_end_date->CustomMsg ?></div></div>
+	</div>
+<?php } ?>
+
 <?php if ($sliders->image->Visible) { // image ?>
 	<div id="r_image" class="form-group">
 		<label id="elh_sliders_image" class="<?php echo $sliders_add->LeftColumnClass ?>"><?php echo $sliders->image->FldCaption() ?></label>

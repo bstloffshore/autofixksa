@@ -433,6 +433,11 @@ class csliders_view extends csliders {
 		$this->buttonlinkTo->SetVisibility();
 		$this->so->SetVisibility();
 		$this->active->SetVisibility();
+		$this->campaign_title->SetVisibility();
+		$this->campain_slug->SetVisibility();
+		$this->campaign_start_date->SetVisibility();
+		$this->campaign_end_date->SetVisibility();
+		$this->is_general_image->SetVisibility();
 
 		// Set up multi page object
 		$this->SetupMultiPages();
@@ -737,6 +742,12 @@ class csliders_view extends csliders {
 		$this->buttonlinkTo->setDbValue($row['buttonlinkTo']);
 		$this->so->setDbValue($row['so']);
 		$this->active->setDbValue($row['active']);
+		$this->campaign_title->setDbValue($row['campaign_title']);
+		$this->campain_slug->setDbValue($row['campain_slug']);
+		$this->campaign_start_date->setDbValue($row['campaign_start_date']);
+		$this->campaign_end_date->setDbValue($row['campaign_end_date']);
+		$this->is_general_image->setDbValue($row['is_general_image']);
+		
 	}
 
 	// Return a row with default values
@@ -753,6 +764,11 @@ class csliders_view extends csliders {
 		$row['buttonlinkTo'] = NULL;
 		$row['so'] = NULL;
 		$row['active'] = NULL;
+		$row['campaign_title'] = NULL;
+		$row['campain_slug'] = NULL;
+		$row['campaign_start_date'] = NULL;
+		$row['campaign_end_date'] = NULL;
+		$row['is_general_image'] = NULL;
 		return $row;
 	}
 
@@ -772,6 +788,11 @@ class csliders_view extends csliders {
 		$this->buttonlinkTo->DbValue = $row['buttonlinkTo'];
 		$this->so->DbValue = $row['so'];
 		$this->active->DbValue = $row['active'];
+		$this->campaign_title->DbValue = $row['campaign_title'];
+		$this->campain_slug->DbValue = $row['campain_slug'];
+		$this->campaign_start_date->DbValue = $row['campaign_start_date'];
+		$this->campaign_end_date->DbValue = $row['campaign_end_date'];
+		$this->is_general_image->DbValue = $row['is_general_image'];
 	}
 
 	// Render row values based on field settings
@@ -860,6 +881,33 @@ class csliders_view extends csliders {
 		}
 		$this->active->ViewCustomAttributes = "";
 
+		// campaign_title
+		$this->campaign_title->ViewValue = $this->campaign_title->CurrentValue;
+		$this->campaign_title->ViewCustomAttributes = "";
+
+		// campain_slug
+		$this->campain_slug->ViewValue = $this->campain_slug->CurrentValue;
+		$this->campain_slug->ViewCustomAttributes = "";
+
+		// campaign_start_date
+		$this->campaign_start_date->ViewValue = $this->campaign_start_date->CurrentValue;
+		$this->campaign_start_date->ViewCustomAttributes = "";
+
+		// campaign_end_date
+		$this->campaign_end_date->ViewValue = $this->campaign_end_date->CurrentValue;
+		$this->campaign_end_date->ViewCustomAttributes = "";
+
+		// is_general_image
+		if (strval($this->is_general_image->CurrentValue) <> "") {
+			$this->is_general_image->ViewValue = $this->is_general_image->OptionCaption($this->is_general_image->CurrentValue);
+		} else {
+			$this->is_general_image->ViewValue = NULL;
+		}
+		$this->is_general_image->ViewCustomAttributes = "";
+
+
+
+
 			// sliderID
 			$this->sliderID->LinkCustomAttributes = "";
 			$this->sliderID->HrefValue = "";
@@ -928,6 +976,31 @@ class csliders_view extends csliders {
 			$this->active->LinkCustomAttributes = "";
 			$this->active->HrefValue = "";
 			$this->active->TooltipValue = "";
+
+			// campaign_title
+			$this->campaign_title->LinkCustomAttributes = "";
+			$this->campaign_title->HrefValue = "";
+			$this->campaign_title->TooltipValue = "";
+
+			// campain_slug
+			$this->campain_slug->LinkCustomAttributes = "";
+			$this->campain_slug->HrefValue = "";
+			$this->campain_slug->TooltipValue = "";
+
+			// campaign_start_date
+			$this->campaign_start_date->LinkCustomAttributes = "";
+			$this->campaign_start_date->HrefValue = "";
+			$this->campaign_start_date->TooltipValue = "";
+
+			// campaign_end_date
+			$this->campaign_end_date->LinkCustomAttributes = "";
+			$this->campaign_end_date->HrefValue = "";
+			$this->campaign_end_date->TooltipValue = "";
+
+			// is_general_image
+			$this->is_general_image->LinkCustomAttributes = "";
+			$this->is_general_image->HrefValue = "";
+			$this->is_general_image->TooltipValue = "";
 		}
 
 		// Call Row Rendered event
@@ -1409,6 +1482,50 @@ $sliders_view->ShowMessage();
 <span id="el_sliders_title_ar" data-page="1">
 <span<?php echo $sliders->title_ar->ViewAttributes() ?>>
 <?php echo $sliders->title_ar->ViewValue ?></span>
+</span>
+</td>
+	</tr>
+<?php } ?>
+<?php if ($sliders->campaign_title->Visible) { // campaign_title ?>
+	<tr id="r_campaign_title">
+		<td class="col-sm-2"><span id="elh_sliders_campaign_title"><?php echo $sliders->campaign_title->FldCaption() ?></span></td>
+		<td data-name="campaign_title"<?php echo $sliders->campaign_title->CellAttributes() ?>>
+<span id="el_sliders_campaign_title" data-page="1">
+<span<?php echo $sliders->campaign_title->ViewAttributes() ?>>
+<?php echo $sliders->campaign_title->ViewValue ?></span>
+</span>
+</td>
+	</tr>
+<?php } ?>
+<?php if ($sliders->campain_slug->Visible) { // campain_slug ?>
+	<tr id="r_campain_slug">
+		<td class="col-sm-2"><span id="elh_sliders_campain_slug"><?php echo $sliders->campain_slug->FldCaption() ?></span></td>
+		<td data-name="campain_slug"<?php echo $sliders->campain_slug->CellAttributes() ?>>
+<span id="el_sliders_campain_slug" data-page="1">
+<span<?php echo $sliders->campain_slug->ViewAttributes() ?>>
+<?php echo $sliders->campain_slug->ViewValue ?></span>
+</span>
+</td>
+	</tr>
+<?php } ?>
+<?php if ($sliders->campaign_start_date->Visible) { // campaign_start_date ?>
+	<tr id="r_campaign_start_date">
+		<td class="col-sm-2"><span id="elh_sliders_campaign_start_date"><?php echo $sliders->campaign_start_date->FldCaption() ?></span></td>
+		<td data-name="campaign_start_date"<?php echo $sliders->campaign_start_date->CellAttributes() ?>>
+<span id="el_sliders_campaign_start_date" data-page="1">
+<span<?php echo $sliders->campaign_start_date->ViewAttributes() ?>>
+<?php echo $sliders->campaign_start_date->ViewValue ?></span>
+</span>
+</td>
+	</tr>
+<?php } ?>
+<?php if ($sliders->campaign_end_date->Visible) { // campaign_end_date ?>
+	<tr id="r_campaign_end_date">
+		<td class="col-sm-2"><span id="elh_sliders_campaign_end_date"><?php echo $sliders->campaign_end_date->FldCaption() ?></span></td>
+		<td data-name="campaign_end_date"<?php echo $sliders->campaign_end_date->CellAttributes() ?>>
+<span id="el_sliders_campaign_end_date" data-page="1">
+<span<?php echo $sliders->campaign_end_date->ViewAttributes() ?>>
+<?php echo $sliders->campaign_end_date->ViewValue ?></span>
 </span>
 </td>
 	</tr>

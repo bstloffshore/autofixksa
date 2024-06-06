@@ -18,6 +18,11 @@ class csliders extends cTable {
 	var $buttonlinkTo;
 	var $so;
 	var $active;
+	var $campaign_title;
+	var $campain_slug;
+	var $campaign_start_date;
+	var $campaign_end_date;
+	var $is_general_image;
 
 	//
 	// Table class constructor
@@ -110,6 +115,40 @@ class csliders extends cTable {
 		$this->active->OptionCount = 2;
 		$this->active->FldDefaultErrMsg = $Language->Phrase("IncorrectInteger");
 		$this->fields['active'] = &$this->active;
+
+		// campaign_title
+		$this->campaign_title = new cField('sliders', 'sliders', 'x_campaign_title', 'campaign_title', '`campaign_title`', '`campaign_title`', 200, -1, FALSE, '`campaign_title`', FALSE, FALSE, FALSE, 'FORMATTED TEXT', 'TEXT');
+		$this->campaign_title->Sortable = TRUE; // Allow sort
+		$this->fields['campaign_title'] = &$this->campaign_title;
+
+		// campain_slug
+		$this->campain_slug = new cField('sliders', 'sliders', 'x_campain_slug', 'campain_slug', '`campain_slug`', '`campain_slug`', 200, -1, FALSE, '`campain_slug`', FALSE, FALSE, FALSE, 'FORMATTED TEXT', 'TEXT');
+		$this->campain_slug->Sortable = TRUE; // Allow sort
+		$this->fields['campain_slug'] = &$this->campain_slug;
+
+		// campaign_start_date
+		$this->campaign_start_date = new cField('sliders', 'sliders', 'x_campaign_start_date', 'campaign_start_date', '`campaign_start_date`', '`campaign_start_date`', 200, -1, FALSE, '`campaign_start_date`', FALSE, FALSE, FALSE, 'FORMATTED TEXT', 'TEXT');
+		$this->campaign_start_date->Sortable = TRUE; // Allow sort
+		$this->fields['campaign_start_date'] = &$this->campaign_start_date;
+
+		
+
+		// campaign_end_date
+		$this->campaign_end_date = new cField('sliders', 'sliders', 'x_campaign_end_date', 'campaign_end_date', '`campaign_end_date`', '`campaign_end_date`', 200, -1, FALSE, '`campaign_end_date`', FALSE, FALSE, FALSE, 'FORMATTED TEXT', 'TEXT');
+		$this->campaign_end_date->Sortable = TRUE; // Allow sort
+		$this->fields['campaign_end_date'] = &$this->campaign_end_date;
+
+		// is_general_image
+		$this->is_general_image = new cField('sliders', 'sliders', 'x_is_general_image', 'is_general_image', '`is_general_image`', '`is_general_image`', 16, -1, FALSE, '`is_general_image`', FALSE, FALSE, FALSE, 'FORMATTED TEXT', 'SELECT');
+		$this->is_general_image->Sortable = TRUE; // Allow sort
+		$this->is_general_image->UsePleaseSelect = TRUE; // Use PleaseSelect by default
+		$this->is_general_image->PleaseSelectText = $Language->Phrase("PleaseSelect"); // PleaseSelect text
+		$this->is_general_image->OptionCount = 2;
+		$this->is_general_image->FldDefaultErrMsg = $Language->Phrase("IncorrectInteger");
+		$this->fields['is_general_image'] = &$this->is_general_image;
+
+
+		
 	}
 
 	// Field Visibility
@@ -648,6 +687,11 @@ class csliders extends cTable {
 		$this->buttonlinkTo->setDbValue($rs->fields('buttonlinkTo'));
 		$this->so->setDbValue($rs->fields('so'));
 		$this->active->setDbValue($rs->fields('active'));
+		$this->campaign_title->setDbValue($rs->fields('campaign_title'));
+		$this->campain_slug->setDbValue($rs->fields('campain_slug'));
+		$this->campaign_start_date->setDbValue($rs->fields('campaign_start_date'));
+		$this->campaign_end_date->setDbValue($rs->fields('campaign_end_date'));
+		$this->is_general_image->setDbValue($rs->fields('is_general_image'));
 	}
 
 	// Render list row values
@@ -726,6 +770,31 @@ class csliders extends cTable {
 		}
 		$this->active->ViewCustomAttributes = "";
 
+
+		// campaign_title
+		$this->campaign_title->ViewValue = $this->campaign_title->CurrentValue;
+		$this->campaign_title->ViewCustomAttributes = "";
+
+		// campain_slug
+		$this->campain_slug->ViewValue = $this->campain_slug->CurrentValue;
+		$this->campain_slug->ViewCustomAttributes = "";
+
+		// campaign_start_date
+		$this->campaign_start_date->ViewValue = $this->campaign_start_date->CurrentValue;
+		$this->campaign_start_date->ViewCustomAttributes = "";
+
+		// campaign_end_date
+		$this->campaign_end_date->ViewValue = $this->campaign_end_date->CurrentValue;
+		$this->campaign_end_date->ViewCustomAttributes = "";
+
+		// is_general_image
+		if (strval($this->is_general_image->CurrentValue) <> "") {
+			$this->is_general_image->ViewValue = $this->is_general_image->OptionCaption($this->is_general_image->CurrentValue);
+		} else {
+			$this->is_general_image->ViewValue = NULL;
+		}
+		$this->is_general_image->ViewCustomAttributes = "";
+
 		// sliderID
 		$this->sliderID->LinkCustomAttributes = "";
 		$this->sliderID->HrefValue = "";
@@ -794,6 +863,31 @@ class csliders extends cTable {
 		$this->active->LinkCustomAttributes = "";
 		$this->active->HrefValue = "";
 		$this->active->TooltipValue = "";
+
+		// campaign_title
+		$this->campaign_title->LinkCustomAttributes = "";
+		$this->campaign_title->HrefValue = "";
+		$this->campaign_title->TooltipValue = "";
+
+		// campain_slug
+		$this->campain_slug->LinkCustomAttributes = "";
+		$this->campain_slug->HrefValue = "";
+		$this->campain_slug->TooltipValue = "";
+
+		// campaign_start_date
+		$this->campaign_start_date->LinkCustomAttributes = "";
+		$this->campaign_start_date->HrefValue = "";
+		$this->campaign_start_date->TooltipValue = "";
+
+		// campaign_end_date
+		$this->campaign_end_date->LinkCustomAttributes = "";
+		$this->campaign_end_date->HrefValue = "";
+		$this->campaign_end_date->TooltipValue = "";
+
+		// is_general_image
+		$this->is_general_image->LinkCustomAttributes = "";
+		$this->is_general_image->HrefValue = "";
+		$this->is_general_image->TooltipValue = "";
 
 		// Call Row Rendered event
 		$this->Row_Rendered();
@@ -883,6 +977,35 @@ class csliders extends cTable {
 		$this->active->EditCustomAttributes = "";
 		$this->active->EditValue = $this->active->Options(TRUE);
 
+		// campaign_title
+		$this->campaign_title->EditAttrs["class"] = "form-control";
+		$this->campaign_title->EditCustomAttributes = "";
+		$this->campaign_title->EditValue = $this->campaign_title->CurrentValue;
+		$this->campaign_title->PlaceHolder = ew_RemoveHtml($this->campaign_title->FldCaption());
+
+		// campain_slug
+		$this->campain_slug->EditAttrs["class"] = "form-control";
+		$this->campain_slug->EditCustomAttributes = "";
+		$this->campain_slug->EditValue = $this->campain_slug->CurrentValue;
+		$this->campain_slug->PlaceHolder = ew_RemoveHtml($this->campain_slug->FldCaption());
+
+		// campaign_start_date
+		$this->campaign_start_date->EditAttrs["class"] = "form-control";
+		$this->campaign_start_date->EditCustomAttributes = "";
+		$this->campaign_start_date->EditValue = $this->campaign_start_date->CurrentValue;
+		$this->campaign_start_date->PlaceHolder = ew_RemoveHtml($this->campaign_start_date->FldCaption());
+
+		// campaign_end_date
+		$this->campaign_end_date->EditAttrs["class"] = "form-control";
+		$this->campaign_end_date->EditCustomAttributes = "";
+		$this->campaign_end_date->EditValue = $this->campaign_end_date->CurrentValue;
+		$this->campaign_end_date->PlaceHolder = ew_RemoveHtml($this->campaign_end_date->FldCaption());
+
+		// is_general_image
+		$this->is_general_image->EditAttrs["class"] = "form-control";
+		$this->is_general_image->EditCustomAttributes = "";
+		$this->is_general_image->EditValue = $this->is_general_image->Options(TRUE);
+
 		// Call Row Rendered event
 		$this->Row_Rendered();
 	}
@@ -921,6 +1044,11 @@ class csliders extends cTable {
 					if ($this->buttonlinkTo->Exportable) $Doc->ExportCaption($this->buttonlinkTo);
 					if ($this->so->Exportable) $Doc->ExportCaption($this->so);
 					if ($this->active->Exportable) $Doc->ExportCaption($this->active);
+					if ($this->campaign_title->Exportable) $Doc->ExportCaption($this->campaign_title);
+					if ($this->campain_slug->Exportable) $Doc->ExportCaption($this->campain_slug);
+					if ($this->campaign_start_date->Exportable) $Doc->ExportCaption($this->campaign_start_date);
+					if ($this->campaign_end_date->Exportable) $Doc->ExportCaption($this->campaign_end_date);
+					if ($this->is_general_image->Exportable) $Doc->ExportCaption($this->is_general_image);
 				} else {
 					if ($this->sliderID->Exportable) $Doc->ExportCaption($this->sliderID);
 					if ($this->title->Exportable) $Doc->ExportCaption($this->title);
@@ -931,6 +1059,11 @@ class csliders extends cTable {
 					if ($this->buttonlinkTo->Exportable) $Doc->ExportCaption($this->buttonlinkTo);
 					if ($this->so->Exportable) $Doc->ExportCaption($this->so);
 					if ($this->active->Exportable) $Doc->ExportCaption($this->active);
+					if ($this->campaign_title->Exportable) $Doc->ExportCaption($this->campaign_title);
+					if ($this->campain_slug->Exportable) $Doc->ExportCaption($this->campain_slug);
+					if ($this->campaign_start_date->Exportable) $Doc->ExportCaption($this->campaign_start_date);
+					if ($this->campaign_end_date->Exportable) $Doc->ExportCaption($this->campaign_end_date);
+					if ($this->is_general_image->Exportable) $Doc->ExportCaption($this->is_general_image);
 				}
 				$Doc->EndExportRow();
 			}
@@ -973,6 +1106,11 @@ class csliders extends cTable {
 						if ($this->buttonlinkTo->Exportable) $Doc->ExportField($this->buttonlinkTo);
 						if ($this->so->Exportable) $Doc->ExportField($this->so);
 						if ($this->active->Exportable) $Doc->ExportField($this->active);
+						if ($this->campaign_title->Exportable) $Doc->ExportField($this->campaign_title);
+						if ($this->campain_slug->Exportable) $Doc->ExportField($this->campain_slug);
+						if ($this->campaign_start_date->Exportable) $Doc->ExportField($this->campaign_start_date);
+						if ($this->campaign_end_date->Exportable) $Doc->ExportField($this->campaign_end_date);
+						if ($this->is_general_image->Exportable) $Doc->ExportField($this->is_general_image);
 					} else {
 						if ($this->sliderID->Exportable) $Doc->ExportField($this->sliderID);
 						if ($this->title->Exportable) $Doc->ExportField($this->title);
@@ -983,6 +1121,11 @@ class csliders extends cTable {
 						if ($this->buttonlinkTo->Exportable) $Doc->ExportField($this->buttonlinkTo);
 						if ($this->so->Exportable) $Doc->ExportField($this->so);
 						if ($this->active->Exportable) $Doc->ExportField($this->active);
+						if ($this->campaign_title->Exportable) $Doc->ExportField($this->campaign_title);
+						if ($this->campain_slug->Exportable) $Doc->ExportField($this->campain_slug);
+						if ($this->campaign_start_date->Exportable) $Doc->ExportField($this->campaign_start_date);
+						if ($this->campaign_end_date->Exportable) $Doc->ExportField($this->campaign_end_date);
+						if ($this->is_general_image->Exportable) $Doc->ExportField($this->is_general_image);
 					}
 					$Doc->EndExportRow($RowCnt);
 				}
